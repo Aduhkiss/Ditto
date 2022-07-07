@@ -19,4 +19,16 @@ public abstract class Command {
     }
 
     public abstract void execute(String[] args);
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
 }
