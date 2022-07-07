@@ -1,0 +1,22 @@
+package com.thecloudyco.ditto.cmd;
+
+public abstract class Command {
+
+    private String name;
+    private String description;
+    private String permission;
+
+    public Command(String name, String description, String permission) {
+        this.name = name;
+        this.description = description;
+        this.permission = permission;
+    }
+
+    public Command(String name, String permission) {
+        this.name = name;
+        this.permission = permission;
+        this.description = "(No Description Provided)";
+    }
+
+    public abstract void execute(String[] args);
+}
