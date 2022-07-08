@@ -1,5 +1,8 @@
 package com.thecloudyco.ditto.cmd;
 
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+
 public abstract class Command {
 
     private String name;
@@ -18,7 +21,7 @@ public abstract class Command {
         this.description = "(No Description Provided)";
     }
 
-    public abstract void execute(String[] args);
+    public abstract void execute(String[] args, JDA discord, MessageReceivedEvent event);
 
     public String getName() {
         return name;

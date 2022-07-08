@@ -1,6 +1,7 @@
 package com.thecloudyco.ditto.cmd;
 
 import com.thecloudyco.ditto.cmd.impl.HelloCommand;
+import com.thecloudyco.ditto.cmd.impl.HelpCommand;
 import com.thecloudyco.ditto.util.LogUtil;
 import com.thecloudyco.ditto.util.StringUtil;
 import net.dv8tion.jda.api.entities.Message;
@@ -16,6 +17,8 @@ public class CommandCenter extends ListenerAdapter {
 
     public static void registerCommands() {
         Commands.add(new HelloCommand());
+
+        Commands.add(new HelpCommand());
     }
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -23,10 +26,14 @@ public class CommandCenter extends ListenerAdapter {
         MessageChannel channel = event.getChannel();
         long time = System.currentTimeMillis();
 
-        for(Command cmd : Commands) {
-            if(msg.getContentDisplay().startsWith("!" + cmd.getName())) {
-                cmd.execute(StringUtil.toArrayWithoutFirst(msg.getContentDisplay()));
-                LogUtil.info(event.getAuthor().getName() + " executed " + cmd.getName());
+                for(Command cmd : Commands) {
+                    if(msg.getContentDisplay().startsWith("!!" + cmd.getName())) {
+
+                        //TODO: Entry ID System
+                        String entryId = StringUtil.randomString(10, "abcdefgijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ0123456789");
+
+                        cmd.execute(StringUtil.toArrayWithoutFirst(msg.getContentDisplay()), event.getJDA(), event);
+                        LogUtil.info(event.getAuthor().getName() + " executed " + cmd.getName() + " {" + entryId + "}");
             }
         }
 
