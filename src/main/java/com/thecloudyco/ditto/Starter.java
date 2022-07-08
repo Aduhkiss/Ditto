@@ -4,7 +4,6 @@ import com.thecloudyco.ditto.cmd.CommandCenter;
 import com.thecloudyco.ditto.database.CoreDatabase;
 import com.thecloudyco.ditto.util.LogUtil;
 import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 
@@ -16,7 +15,6 @@ public class Starter {
     private static JDABuilder discord;
 
     public static void main(String[] args) {
-        //System.out.println("Hello World!");
         Dotenv dotenv = Dotenv.load();
         discord = JDABuilder.createDefault(dotenv.get("DISCORD_TOKEN"));
         discord.setBulkDeleteSplittingEnabled(false);
